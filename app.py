@@ -1,5 +1,5 @@
 """
-EuroJobs Pro Enterprise - Complete 42-Sector Automated Platform
+EuroJobs Pro Enterprise - Soft Midnight Blue with Interactive Mouse Wave & 3D Drawer
 Run with: python app.py
 """
 
@@ -43,17 +43,34 @@ VISA_REGEX = re.compile(
 )
 
 # ---------------------------------------------------------------------------
-# 42 European Shortage Sectors Configuration
+# 53 European Shortage Sectors Configuration
 # ---------------------------------------------------------------------------
 SHORTAGE_SECTORS: List[Dict[str, str]] = [
-    # 🚗 1. DRIVING, TRANSPORT & DELIVERY (5)
-    {"id": "driver_car", "name": "Chauffeur & Passenger Car Driver", "query": "Fahrer Chauffeur PKW", "group": "Driving & Transport", "country": "Germany"},
+    # 💻 1. IT, SOFTWARE & CLOUD (4)
+    {"id": "software_eng", "name": "Software Engineer & Full Stack Developer", "query": "Softwareentwickler Python Java Developer", "group": "IT & Software", "country": "Germany"},
+    {"id": "devops_cloud", "name": "Cloud DevOps & Site Reliability Engineer", "query": "DevOps Engineer Cloud AWS Kubernetes", "group": "IT & Software", "country": "Netherlands"},
+    {"id": "data_analyst", "name": "Data Analyst & Business Intelligence", "query": "Data Analyst Business Intelligence SQL", "group": "IT & Software", "country": "Ireland"},
+    {"id": "cybersecurity", "name": "Cybersecurity Analyst & Systems Admin", "query": "Cyber Security Administrator Netzwerk", "group": "IT & Software", "country": "Sweden"},
+
+    # 📐 2. ENGINEERING & DESIGN (3)
+    {"id": "civil_engineer", "name": "Civil Engineer & Site Construction Manager", "query": "Bauingenieur Bauleiter", "group": "Engineering", "country": "Germany"},
+    {"id": "mechanical_engineer", "name": "Mechanical Design & Robotics Engineer", "query": "Maschinenbauingenieur Konstrukteur", "group": "Engineering", "country": "Austria"},
+    {"id": "electrical_engineer", "name": "Electrical Systems & Electronics Engineer", "query": "Elektroingenieur Automatisierung", "group": "Engineering", "country": "Switzerland"},
+
+    # 🏢 3. ADMINISTRATION, ADVISORY & OFFICE (4)
+    {"id": "admin_assistant", "name": "Administrative Assistant & Office Coordinator", "query": "Kaufmännische Angestellte Bürokaufmann", "group": "Administration & Office", "country": "Germany"},
+    {"id": "customer_advisor", "name": "Multilingual Customer Advisor & Support", "query": "Customer Support Advisor Kundenservice", "group": "Administration & Office", "country": "Ireland"},
+    {"id": "accountant", "name": "Financial Accountant & Bookkeeper", "query": "Finanzbuchhalter Buchhalter", "group": "Administration & Office", "country": "Netherlands"},
+    {"id": "hr_recruiter", "name": "HR Specialist & Talent Acquisition Recruiter", "query": "Personalreferent Recruiter HR", "group": "Administration & Office", "country": "Belgium"},
+
+    # 🚗 4. DRIVING, TRANSPORT & DELIVERY (5)
+    {"id": "driver_car", "name": "Chauffeur & Passenger Car Driver (Cat. B)", "query": "Fahrer Chauffeur PKW", "group": "Driving & Transport", "country": "Germany"},
     {"id": "driver_courier", "name": "Courier & Delivery Van Driver (Cat. B)", "query": "Paketzusteller Kurierfahrer", "group": "Driving & Transport", "country": "Germany"},
     {"id": "driver_ce", "name": "Long-Haul Truck Driver (CE License / Code 95)", "query": "Berufskraftfahrer LKW CE", "group": "Driving & Transport", "country": "Poland"},
     {"id": "driver_bus", "name": "Public Bus & Coach Driver (Cat. D)", "query": "Busfahrer Linienverkehr", "group": "Driving & Transport", "country": "Germany"},
     {"id": "driver_special", "name": "Heavy Transport & Tanker Driver", "query": "Schwertransport Tankwagenfahrer", "group": "Driving & Transport", "country": "Netherlands"},
 
-    # 🔧 2. AUTOMOTIVE, MECHANICS & VEHICLE REPAIR (6)
+    # 🔧 5. AUTOMOTIVE, MECHANICS & VEHICLE REPAIR (6)
     {"id": "mechanic_car", "name": "Automotive Technician & Car Mechanic", "query": "Kfz-Mechatroniker Kfz-Mechaniker", "group": "Automotive & Mechanics", "country": "Germany"},
     {"id": "mechanic_heavy", "name": "Heavy Commercial Fleet & Truck Mechanic", "query": "Nutzfahrzeugmechatroniker LKW Mechaniker", "group": "Automotive & Mechanics", "country": "Belgium"},
     {"id": "mechanic_industrial", "name": "Industrial Machinery & Maintenance Mechanic", "query": "Industriemechaniker Instandhaltung", "group": "Automotive & Mechanics", "country": "Austria"},
@@ -61,7 +78,7 @@ SHORTAGE_SECTORS: List[Dict[str, str]] = [
     {"id": "car_painter", "name": "Vehicle Spray Painter & Finisher", "query": "Fahrzeuglackierer", "group": "Automotive & Mechanics", "country": "France"},
     {"id": "mechanic_agri", "name": "Agricultural Machinery Mechanic", "query": "Landmaschinenmechatroniker", "group": "Automotive & Mechanics", "country": "Denmark"},
 
-    # 🔥 3. INDUSTRIAL TRADES, METAL & MACHINING (6)
+    # 🔥 6. INDUSTRIAL TRADES, METAL & MACHINING (6)
     {"id": "welder", "name": "TIG / MIG / MAG Industrial Welder (ISO 9606)", "query": "Schweißer MAG WIG TIG", "group": "Industrial Trades", "country": "Germany"},
     {"id": "cnc_operator", "name": "CNC Milling & Lathe Operator (Sinumerik)", "query": "CNC-Fräser CNC-Dreher", "group": "Industrial Trades", "country": "Switzerland"},
     {"id": "electrician_ind", "name": "Industrial Automation Electrician", "query": "Industrieelektriker Automatisierungstechnik", "group": "Industrial Trades", "country": "Germany"},
@@ -69,7 +86,7 @@ SHORTAGE_SECTORS: List[Dict[str, str]] = [
     {"id": "pipefitter", "name": "Industrial Pipefitter & Plant Installer", "query": "Rohrschlosser Rohrleitungsbauer", "group": "Industrial Trades", "country": "Netherlands"},
     {"id": "toolmaker", "name": "Precision Toolmaker & Die Specialist", "query": "Werkzeugmechaniker", "group": "Industrial Trades", "country": "Germany"},
 
-    # 🏗️ 4. CONSTRUCTION & BUILDING TRADES (7)
+    # 🏗️ 7. CONSTRUCTION & BUILDING TRADES (7)
     {"id": "electrician_build", "name": "Construction & Building Electrician", "query": "Elektroinstallateur Gebäudetechnik", "group": "Construction & Building", "country": "Germany"},
     {"id": "plumber_hvac", "name": "Plumber & HVAC Technician", "query": "Anlagenmechaniker SHK Klempner", "group": "Construction & Building", "country": "Sweden"},
     {"id": "carpenter", "name": "Carpenter & Joiner (Framing & Finishing)", "query": "Tischler Zimmerer Schreiner", "group": "Construction & Building", "country": "Austria"},
@@ -78,98 +95,126 @@ SHORTAGE_SECTORS: List[Dict[str, str]] = [
     {"id": "roofer", "name": "Roofer & Waterproofing Specialist", "query": "Dachdecker", "group": "Construction & Building", "country": "France"},
     {"id": "solar_installer", "name": "Solar PV & Heat Pump Installer", "query": "Photovoltaik Monteur Solarteur", "group": "Construction & Building", "country": "Germany"},
 
-    # 🏥 5. HEALTHCARE & MEDICAL SERVICES (5)
+    # 🏥 8. HEALTHCARE & MEDICAL SERVICES (5)
     {"id": "nurse", "name": "Registered General Nurse (Pflegefachkraft)", "query": "Pflegefachkraft Krankenpfleger", "group": "Healthcare & Medical", "country": "Germany"},
     {"id": "caregiver", "name": "Elderly Care Assistant & Geriatric Aide", "query": "Altenpfleger Pflegehelfer", "group": "Healthcare & Medical", "country": "France"},
     {"id": "physiotherapist", "name": "Licensed Physiotherapist", "query": "Physiotherapeut", "group": "Healthcare & Medical", "country": "Germany"},
     {"id": "dental_assistant", "name": "Dental Assistant & Hygienist", "query": "Zahnmedizinische Fachangestellte", "group": "Healthcare & Medical", "country": "Austria"},
     {"id": "medical_lab", "name": "Medical Laboratory Technician (MTLA)", "query": "MTLA Laborassistent", "group": "Healthcare & Medical", "country": "Ireland"},
 
-    # 📦 6. LOGISTICS, STORAGE & WAREHOUSE (3)
+    # 📦 9. LOGISTICS, STORAGE & WAREHOUSE (3)
     {"id": "forklift", "name": "Warehouse Forklift & Reach-Truck Operator", "query": "Gabelstaplerfahrer Hochregallager", "group": "Logistics & Warehouse", "country": "Netherlands"},
     {"id": "warehouse_picker", "name": "Order Picker, Packer & Warehouse Hand", "query": "Kommissionierer Lagerhelfer", "group": "Logistics & Warehouse", "country": "Germany"},
     {"id": "logistics_spec", "name": "Logistics Specialist & Dispatcher", "query": "Fachkraft für Lagerlogistik", "group": "Logistics & Warehouse", "country": "Poland"},
 
-    # 🍳 7. GASTRONOMY, BAKERY & HOSPITALITY (5)
+    # 🍳 10. GASTRONOMY, BAKERY & HOSPITALITY (5)
     {"id": "cook", "name": "Chef de Partie & Specialty Cook", "query": "Koch Chef de Partie", "group": "Culinary & Hospitality", "country": "Spain"},
     {"id": "baker", "name": "Artisan Baker & Pastry Chef", "query": "Bäcker Konditor", "group": "Culinary & Hospitality", "country": "Germany"},
     {"id": "butcher", "name": "Meat Processor & Professional Butcher", "query": "Fleischer Metzger", "group": "Culinary & Hospitality", "country": "Ireland"},
     {"id": "waiter", "name": "Restaurant Server & Service Supervisor", "query": "Restaurantfachmann Servicekraft", "group": "Culinary & Hospitality", "country": "Italy"},
     {"id": "hotel_housekeeper", "name": "Hotel Housekeeping & Floor Attendant", "query": "Housekeeping Zimmermädchen Hotel", "group": "Culinary & Hospitality", "country": "Switzerland"},
 
-    # 🌾 8. AGRICULTURE, GREENHOUSES & FORESTRY (3)
+    # 🌾 11. AGRICULTURE, GREENHOUSES & FORESTRY (3)
     {"id": "tractor_operator", "name": "Tractor Operator & Agricultural Machine Hand", "query": "Traktorfahrer Landwirt Erntehelfer", "group": "Agriculture & Farming", "country": "Denmark"},
     {"id": "greenhouse_tech", "name": "Greenhouse Climate & Hydroponics Operator", "query": "Gärtner Gewächshaus Zierpflanzen", "group": "Agriculture & Farming", "country": "Netherlands"},
     {"id": "forestry_worker", "name": "Forestry Operator & Chainsaw Specialist", "query": "Forstwirt Forstwirtschaft", "group": "Agriculture & Farming", "country": "Sweden"},
 
-    # 🧹 9. FACILITIES & CLEANING SERVICES (2)
+    # 🧹 12. FACILITIES & CLEANING SERVICES (2)
     {"id": "cleaner_ind", "name": "Industrial & Commercial Cleaning Specialist", "query": "Gebäudereiniger Industriereinigung", "group": "Facilities & Cleaning", "country": "Germany"},
     {"id": "security_officer", "name": "Security Guard & Site Protection Officer", "query": "Sicherheitsmitarbeiter Wachmann", "group": "Facilities & Cleaning", "country": "Belgium"}
 ]
 
 # ---------------------------------------------------------------------------
-# Direct-Linked Base Seed Database
+# Guaranteed Base Positions (Direct Application Deep Links)
 # ---------------------------------------------------------------------------
 SEED_DATABASE: List[Dict[str, Any]] = [
     {
-        "id": "eur_med_01",
-        "role_category": "nurse",
-        "sector_group": "Healthcare & Medical",
-        "title": "Registered Nurse (Pflegefachkraft) - Hospital & Clinic",
-        "company": "Asklepios Kliniken Gruppe",
-        "country": "Germany",
-        "city": "Hamburg",
-        "visa_sponsored": True,
-        "remote": False,
-        "salary": "€3,400 - €4,200 / month",
-        "source": "Asklepios Careers Official",
-        "url": "https://www.asklepios.com/beruf/stellenangebote/?search=Pflegefachkraft",
-        "description": "Full-time position for general care nurses. Full visa sponsorship, official B2 German recognition program (Defizitbescheid support), and subsidized apartment provided during relocation."
+        "id": "seed_it_sw", "role_category": "software_eng", "sector_group": "IT & Software",
+        "title": "Senior Python / Cloud Backend Engineer", "company": "Delivery Hero SE",
+        "country": "Germany", "city": "Berlin", "visa_sponsored": True, "remote": True,
+        "salary": "€72,000 - €88,000 / year", "source": "Delivery Hero Careers Direct",
+        "url": "https://careers.deliveryhero.com/global/en/search-results?keywords=Python",
+        "description": "Designing distributed backend microservices. Complete relocation package, flights, and German EU Blue Card fast-track sponsorship provided."
     },
     {
-        "id": "eur_drv_01",
-        "role_category": "driver_ce",
-        "sector_group": "Driving & Transport",
-        "title": "International Long-Haul Truck Driver (CE License + Code 95)",
-        "company": "Girteka European Logistics",
-        "country": "Poland",
-        "city": "Warsaw / European Routes",
-        "visa_sponsored": True,
-        "remote": False,
-        "salary": "€2,400 - €3,100 / month net",
-        "source": "Girteka Driver Portal",
+        "id": "seed_it_devops", "role_category": "devops_cloud", "sector_group": "IT & Software",
+        "title": "Cloud DevOps & Platform Reliability Engineer", "company": "Adyen Global Payments",
+        "country": "Netherlands", "city": "Amsterdam", "visa_sponsored": True, "remote": False,
+        "salary": "€75,000 - €95,000 / year", "source": "Adyen Global Careers",
+        "url": "https://careers.adyen.com/vacancies",
+        "description": "Managing AWS and Kubernetes infrastructure. Highly Skilled Migrant visa sponsorship and Dutch 30% tax ruling application support provided."
+    },
+    {
+        "id": "seed_it_data", "role_category": "data_analyst", "sector_group": "IT & Software",
+        "title": "Data Analyst & Business Intelligence Specialist", "company": "Stripe Operations",
+        "country": "Ireland", "city": "Dublin", "visa_sponsored": True, "remote": True,
+        "salary": "€65,000 - €80,000 / year", "source": "Stripe Careers Dublin",
+        "url": "https://stripe.com/jobs/search?query=data",
+        "description": "Building automated analytics pipelines and executive financial dashboards. Irish Critical Skills Employment Permit sponsorship included."
+    },
+    {
+        "id": "seed_eng_civil", "role_category": "civil_engineer", "sector_group": "Engineering",
+        "title": "Civil Engineer & Infrastructure Project Manager", "company": "Hochtief Solutions AG",
+        "country": "Germany", "city": "Frankfurt / Essen", "visa_sponsored": True, "remote": False,
+        "salary": "€58,000 - €74,000 / year", "source": "Hochtief Careers",
+        "url": "https://www.hochtief.de/karriere",
+        "description": "Structural engineering, budget oversight, and site supervision on bridge and commercial construction projects. Full EU Blue Card sponsorship."
+    },
+    {
+        "id": "seed_adm_assistant", "role_category": "admin_assistant", "sector_group": "Administration & Office",
+        "title": "Bilingual Administrative Assistant & Office Coordinator", "company": "Allianz Global Corporate",
+        "country": "Germany", "city": "Munich", "visa_sponsored": True, "remote": False,
+        "salary": "€3,000 - €3,700 / month", "source": "Allianz Careers",
+        "url": "https://careers.allianz.com/",
+        "description": "Executive calendar management, international travel logistics, and bilingual documentation. Work visa sponsorship for experienced candidates."
+    },
+    {
+        "id": "seed_drv_car", "role_category": "driver_car", "sector_group": "Driving & Transport",
+        "title": "Chauffeur & Executive Passenger Car Driver (Cat. B)", "company": "Sixt Chauffeur Services",
+        "country": "Germany", "city": "Munich / Frankfurt", "visa_sponsored": True, "remote": False,
+        "salary": "€2,600 - €3,200 / month", "source": "Direct Employer Portal",
+        "url": "https://www.sixt.jobs/search/?q=Chauffeur",
+        "description": "Executive limousine and passenger transport for business travelers and airport transfers. Work permit support available for candidates with clean Cat. B driver's license."
+    },
+    {
+        "id": "seed_drv_ce", "role_category": "driver_ce", "sector_group": "Driving & Transport",
+        "title": "International Long-Haul Truck Driver (CE + Code 95)", "company": "Girteka European Logistics",
+        "country": "Poland", "city": "Warsaw / European Routes", "visa_sponsored": True, "remote": False,
+        "salary": "€2,500 - €3,300 / month net", "source": "Girteka Driver Portal",
         "url": "https://girtekadrivers.com/",
-        "description": "Long-distance refrigerated trailer driving across Central & Western Europe. Full Polish national work visa (Karta Pobytu) processing and Code 95 training provided."
+        "description": "Operating modern DAF and Volvo Euro-6 trucks across Schengen routes. Complete Polish national work visa (Karta Pobytu) processing and Code 95 training provided."
     },
     {
-        "id": "eur_wld_01",
-        "role_category": "welder",
-        "sector_group": "Industrial Trades",
-        "title": "TIG / MIG / MAG Industrial Welder (ISO 9606)",
-        "company": "Bilfinger Industrial Services",
-        "country": "Germany",
-        "city": "Stuttgart",
-        "visa_sponsored": True,
-        "remote": False,
-        "salary": "€3,200 - €4,100 / month",
-        "source": "Bilfinger Careers Direct",
+        "id": "seed_mech_car", "role_category": "mechanic_car", "sector_group": "Automotive & Mechanics",
+        "title": "Automotive Technician & Passenger Car Mechanic", "company": "TÜV SÜD Auto Service",
+        "country": "Germany", "city": "Stuttgart", "visa_sponsored": True, "remote": False,
+        "salary": "€3,100 - €3,900 / month", "source": "Official Job Registry (Ref: 10001-AUTO)",
+        "url": "https://www.arbeitsagentur.de/jobsuche/suche?was=Kfz-Mechatroniker",
+        "description": "Inspection, diagnostic troubleshooting, and scheduled mechanical maintenance on modern European passenger vehicles."
+    },
+    {
+        "id": "seed_welder", "role_category": "welder", "sector_group": "Industrial Trades",
+        "title": "TIG / MIG / MAG Industrial Welder (ISO 9606)", "company": "Bilfinger Industrial Services",
+        "country": "Germany", "city": "Stuttgart", "visa_sponsored": True, "remote": False,
+        "salary": "€3,200 - €4,100 / month", "source": "Bilfinger Careers Direct",
         "url": "https://jobs.bilfinger.com/search/?q=Schwei%C3%9Fer",
-        "description": "Pipe welding and structural steel fabrication for industrial facilities according to ISO 9606-1 standards. Fast-track German Skilled Immigration Act (FEG) visa support provided."
+        "description": "Structural steel fabrication and high-pressure pipe welding according to ISO 9606-1 standards. Fast-track FEG visa support provided."
     },
     {
-        "id": "eur_cook_01",
-        "role_category": "cook",
-        "sector_group": "Culinary & Hospitality",
-        "title": "Chef de Partie & Specialty Cook",
-        "company": "Paradores de Turismo",
-        "country": "Spain",
-        "city": "Valencia",
-        "visa_sponsored": True,
-        "remote": False,
-        "salary": "€2,200 - €2,900 / month",
-        "source": "Paradores Careers",
+        "id": "seed_nurse", "role_category": "nurse", "sector_group": "Healthcare & Medical",
+        "title": "Registered General Nurse (Pflegefachkraft)", "company": "Asklepios Kliniken Gruppe",
+        "country": "Germany", "city": "Hamburg", "visa_sponsored": True, "remote": False,
+        "salary": "€3,400 - €4,200 / month", "source": "Asklepios Careers Official",
+        "url": "https://www.asklepios.com/beruf/stellenangebote/?search=Pflegefachkraft",
+        "description": "Hospital patient care. Full visa sponsorship, official B2 German recognition program (Defizitbescheid support), and subsidized apartment provided."
+    },
+    {
+        "id": "seed_cook", "role_category": "cook", "sector_group": "Culinary & Hospitality",
+        "title": "Chef de Partie & Specialty Cook", "company": "Paradores de Turismo",
+        "country": "Spain", "city": "Valencia", "visa_sponsored": True, "remote": False,
+        "salary": "€2,200 - €2,900 / month", "source": "Paradores Careers",
         "url": "https://parador.es/es/empleo",
-        "description": "Managing high-volume luxury kitchen service, inventory ordering, and HACCP compliance. Annual contract with Spanish work permit processing for verified culinary experience."
+        "description": "Fine dining restaurant service, HACCP compliance, and inventory management in luxury hotel kitchens."
     }
 ]
 
@@ -177,7 +222,7 @@ DYNAMIC_JOB_CACHE: Dict[str, Dict[str, Any]] = {}
 CRAWLER_STATE = {
     "is_running": False,
     "last_run": "Starting up...",
-    "total_indexed": 0
+    "total_indexed": len(SEED_DATABASE)
 }
 
 # ---------------------------------------------------------------------------
@@ -190,7 +235,7 @@ async def fetch_arbeitsagentur_sector(client: httpx.AsyncClient, sector: Dict[st
             url = "https://rest.arbeitsagentur.de/jobboerse/jobsuche-service/pc/v4/jobs"
             headers = {
                 "X-API-Key": "jobboerse-jobsuche",
-                "User-Agent": "EuroJobsEnterprise/4.2"
+                "User-Agent": "EuroJobsEnterprise/8.0"
             }
             params = {"was": sector["query"], "size": 6}
             res = await client.get(url, headers=headers, params=params, timeout=7.0)
@@ -207,7 +252,7 @@ async def fetch_arbeitsagentur_sector(client: httpx.AsyncClient, sector: Dict[st
                     direct_ext_url = item.get("externeUrl") or item.get("externeURL")
                     if direct_ext_url and str(direct_ext_url).startswith("http"):
                         final_apply_url = str(direct_ext_url)
-                        source_label = "Direct Employer Application Portal"
+                        source_label = "Direct Employer Portal"
                     elif ref_nr:
                         encoded_ref = urllib.parse.quote(ref_nr)
                         final_apply_url = f"https://www.arbeitsagentur.de/jobsuche/suche?was={encoded_ref}&id={encoded_ref}"
@@ -242,7 +287,7 @@ async def fetch_arbeitnow_sector(client: httpx.AsyncClient, sector: Dict[str, st
     async with sem:
         try:
             url = f"https://www.arbeitnow.com/api/job-board-api?search={httpx.URL(sector['query'].split()[0]).raw_path.decode()}"
-            res = await client.get(url, headers={"User-Agent": "EuroJobsEnterprise/4.2"}, timeout=6.0)
+            res = await client.get(url, headers={"User-Agent": "EuroJobsEnterprise/8.0"}, timeout=6.0)
             if res.status_code == 200:
                 for item in res.json().get("data", [])[:4]:
                     text = f"{item.get('title','')} {item.get('description','')} {' '.join(item.get('tags', []))}"
@@ -273,7 +318,7 @@ async def run_full_crawler_cycle():
     if CRAWLER_STATE["is_running"]:
         return
     CRAWLER_STATE["is_running"] = True
-    logger.info("[Auto-Crawler] 🚀 Initiating full background sweep with direct deep links...")
+    logger.info("[Auto-Crawler] 🚀 Initiating full background sweep across all 53 sectors...")
 
     sem = asyncio.Semaphore(4)
     newly_added = 0
@@ -313,7 +358,7 @@ async def lifespan(app: FastAPI):
     yield
     task.cancel()
 
-app = FastAPI(title="EuroJobs Pro Enterprise", version="4.2.0", lifespan=lifespan)
+app = FastAPI(title="EuroJobs Pro Enterprise", version="8.0.0", lifespan=lifespan)
 
 app.add_middleware(
     CORSMiddleware,
@@ -347,7 +392,7 @@ class AIRequest(BaseModel):
 @app.post("/api/crawler/trigger")
 async def trigger_crawler(background_tasks: BackgroundTasks):
     background_tasks.add_task(run_full_crawler_cycle)
-    return {"message": "Instant full-sweep triggered across all 42 sectors."}
+    return {"message": "Instant full-sweep triggered across all 53 sectors."}
 
 @app.get("/api/jobs")
 async def get_jobs(
@@ -388,12 +433,12 @@ def generate_offline_visa_analysis(req: AIRequest) -> str:
     skills = req.profile.skills or "Practical vocational background"
     langs = req.profile.languages or "Basic communication"
     
-    score = 80
-    if any(k in req.job_title.lower() for k in ["driver", "mechanic", "nurse", "welder", "cnc", "electrician", "plumber"]):
-        score += 12
+    score = 82
+    if any(k in req.job_title.lower() for k in ["software", "engineer", "data", "admin", "driver", "mechanic", "nurse", "welder"]):
+        score += 10
     if "germany" in country.lower() and ("b1" in langs.lower() or "b2" in langs.lower() or "german" in langs.lower()):
-        score += 8
-    score = min(score, 95)
+        score += 6
+    score = min(score, 96)
 
     return f"""### 🇪🇺 European Immigration & Visa Feasibility Assessment
 **Target Role:** {req.job_title} | **Employer:** {req.company} ({country})
@@ -404,8 +449,8 @@ def generate_offline_visa_analysis(req: AIRequest) -> str:
 #### 1. Official Legal Pathway for {country}
 * **Shortage Profession Priority:** This profession is registered under the official **EU Shortage Occupations List**. European employers are authorized to sponsor international candidates without prolonged national labor market priority procedures.
 * **Applicable Visa Framework:**
-  * **Germany:** *Skilled Immigration Act (Fachkräfteeinwanderungsgesetz)* or *Chancenkarte (Opportunity Card)*.
-  * **EU-Wide:** *EU Blue Card* (for technical degrees) or *National Single Work Permit*.
+  * **Tech & Engineering Degrees:** *EU Blue Card* (lowered salary threshold for in-demand roles).
+  * **Vocational & Skilled Trades:** *Skilled Immigration Act (Fachkräfteeinwanderungsgesetz)* or *Chancenkarte (Opportunity Card)*.
   * **France / Poland / Spain:** *Salarié / Zezwolenie na pracę Typ A / Autorización de residencia y trabajo*.
 
 #### 2. Candidate Profile Analysis
@@ -494,7 +539,7 @@ async def make_cover_letter(req: AIRequest):
     return {"cover_letter": generate_offline_cover_letter(req), "source": "EU Career Rule Engine (Offline Guaranteed)"}
 
 # ---------------------------------------------------------------------------
-# Integrated Frontend Route
+# Integrated Frontend with Soft Midnight Blue Canvas & 3D Drawer
 # ---------------------------------------------------------------------------
 @app.get("/", response_class=HTMLResponse)
 async def serve_frontend():
@@ -503,236 +548,474 @@ async def serve_frontend():
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>EuroJobs Pro · Direct Application Job & Visa Engine</title>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <title>EuroJobs Pro · Official European Job & Visa Mobility Network</title>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+  <!-- jsPDF for instant European Cover Letter PDF generation -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
   <style>
     :root {
-      --bg: #060b14;
-      --surface: rgba(15, 23, 42, 0.6);
-      --border: rgba(255, 255, 255, 0.12);
-      --border-specular: rgba(255, 255, 255, 0.35);
-      --primary: #2563eb;
+      --bg: #070e1e;
+      --midnight: #0b152d;
+      --surface: rgba(14, 25, 52, 0.65);
+      --surface-elevated: rgba(20, 35, 72, 0.75);
+      --glass-border: rgba(255, 255, 255, 0.12);
+      --glass-specular: rgba(255, 255, 255, 0.42);
+      --primary: #1d4ed8;
+      --primary-light: #3b82f6;
       --accent: #10b981;
-      --purple: #8b5cf6;
+      --gold: #f59e0b;
       --text: #f8fafc;
-      --muted: #94a3b8;
-      --radius: 16px;
+      --text-muted: #94a3b8;
+      --radius: 18px;
       --radius-sm: 10px;
-      --drawer-w: 620px;
+      --radius-pill: 9999px;
+      --drawer-w: 640px;
     }
+
     * { box-sizing: border-box; margin: 0; padding: 0; }
+
     body {
-      background: var(--bg); color: var(--text); font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
-      line-height: 1.5; min-height: 100vh; overflow-x: hidden; position: relative;
+      background: radial-gradient(circle at 50% 30%, #101f42 0%, #0a142c 55%, #060d1d 100%);
+      color: var(--text);
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      line-height: 1.55;
+      min-height: 100vh;
+      overflow-x: hidden;
+      position: relative;
+      letter-spacing: -0.01em;
     }
 
-    .liquid-blob-1, .liquid-blob-2, .liquid-blob-3 {
-      position: fixed; border-radius: 50%; filter: blur(100px);
-      z-index: -1; pointer-events: none; opacity: 0.45; animation: drift 22s ease-in-out infinite alternate;
-    }
-    .liquid-blob-1 { width: 550px; height: 550px; background: radial-gradient(circle, #2563eb, rgba(56, 189, 248, 0.2)); top: -100px; left: -100px; }
-    .liquid-blob-2 { width: 600px; height: 600px; background: radial-gradient(circle, #7c3aed, rgba(236, 72, 153, 0.15)); bottom: -150px; right: -100px; animation-duration: 28s; }
-    .liquid-blob-3 { width: 450px; height: 450px; background: radial-gradient(circle, #059669, rgba(16, 185, 129, 0.15)); top: 45%; left: 35%; animation-duration: 32s; }
-
-    @keyframes drift {
-      0%   { transform: translate(0, 0) scale(1); }
-      50%  { transform: translate(60px, 45px) scale(1.08); }
-      100% { transform: translate(-40px, 70px) scale(0.95); }
+    /* Interactive Fluid Canvas in Background (Soft Wavy Lines Moving with Mouse) */
+    #wave-canvas {
+      position: fixed; inset: 0; pointer-events: none; z-index: -1;
+      width: 100%; height: 100%;
     }
 
+    /* True Physical Liquid Glass Architecture */
     .liquid-glass {
-      background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 100%), rgba(15, 23, 42, 0.65);
-      backdrop-filter: blur(24px) saturate(190%); -webkit-backdrop-filter: blur(24px) saturate(190%);
-      border: 1px solid var(--border); border-top: 1px solid var(--border-specular);
-      border-left: 1px solid rgba(255, 255, 255, 0.22);
-      box-shadow: 0 12px 36px 0 rgba(0, 0, 0, 0.45), inset 0 1px 1px 0 rgba(255, 255, 255, 0.22);
-      border-radius: var(--radius); position: relative; overflow: hidden;
-      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.02) 60%, rgba(255, 255, 255, 0.05) 100%), var(--surface);
+      backdrop-filter: blur(28px) saturate(180%) contrast(102%);
+      -webkit-backdrop-filter: blur(28px) saturate(180%) contrast(102%);
+      border: 1px solid var(--glass-border);
+      border-top: 1px solid var(--glass-specular);
+      border-left: 1px solid rgba(255, 255, 255, 0.28);
+      box-shadow: 
+        0 24px 50px -12px rgba(0, 0, 0, 0.6),
+        inset 0 1px 2px rgba(255, 255, 255, 0.38),
+        inset 0 -1px 2px rgba(0, 0, 0, 0.4);
+      border-radius: var(--radius);
+      position: relative;
+      overflow: hidden;
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .liquid-glass::before {
+      content: '';
+      position: absolute;
+      top: 0; left: -100%; width: 100%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.09), transparent);
+      transition: left 0.75s ease;
+      pointer-events: none;
+    }
+    .liquid-glass:hover::before {
+      left: 100%;
     }
 
+    /* Header */
+    header {
+      position: sticky; top: 0; z-index: 50;
+      backdrop-filter: blur(28px) saturate(200%);
+      -webkit-backdrop-filter: blur(28px) saturate(200%);
+      background: rgba(7, 14, 30, 0.82);
+      border-bottom: 1px solid var(--glass-border);
+      padding: 14px 32px;
+      display: flex; justify-content: space-between; align-items: center;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    }
+    .brand-wrap { display: flex; align-items: center; gap: 12px; }
+    .eu-flag-emblem {
+      width: 34px; height: 34px; border-radius: 9px;
+      background: linear-gradient(135deg, #003399, #001f54);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 17px; box-shadow: 0 4px 14px rgba(0, 51, 153, 0.5);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+    .brand-title {
+      font-size: 17px; font-weight: 800; letter-spacing: -0.02em;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .brand-title span {
+      background: linear-gradient(135deg, #1d4ed8, #2563eb);
+      color: #93c5fd; font-size: 10.5px; padding: 2px 9px;
+      border-radius: var(--radius-pill); font-weight: 700;
+      border: 1px solid rgba(147, 197, 253, 0.3);
+    }
+
+    nav { display: flex; gap: 6px; flex-wrap: wrap; }
+    nav button {
+      background: rgba(255, 255, 255, 0.04);
+      color: var(--text-muted);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 9px 18px; border-radius: var(--radius-pill);
+      font-weight: 600; font-size: 12.5px; cursor: pointer;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative; overflow: hidden;
+    }
+    nav button:hover {
+      color: #fff; background: rgba(255, 255, 255, 0.1);
+      transform: translateY(-1px);
+    }
+    nav button.active {
+      background: linear-gradient(135deg, rgba(29, 78, 216, 0.45), rgba(59, 130, 246, 0.25));
+      color: #93c5fd;
+      border-color: rgba(147, 197, 253, 0.5);
+      box-shadow: 0 4px 18px rgba(37, 99, 235, 0.3), inset 0 1px 1px rgba(255, 255, 255, 0.35);
+    }
+
+    main { max-width: 1400px; margin: 0 auto; padding: 32px 28px; }
+    .card { padding: 28px; margin-bottom: 24px; }
+
+    /* Boxed Title Capsule */
     .glass-title-box {
-      display: inline-flex; align-items: center; gap: 12px; padding: 10px 20px;
-      background: linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.02) 100%), rgba(15, 23, 42, 0.7);
-      backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.18);
-      border-top: 1px solid rgba(255, 255, 255, 0.45); border-radius: var(--radius-sm);
-      box-shadow: 0 8px 24px rgba(0,0,0,0.35), inset 0 1px 2px rgba(255,255,255,0.3);
-      position: relative; margin-bottom: 12px; animation: floatSubtle 4s ease-in-out infinite alternate;
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 8px 18px;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.03) 100%), rgba(12, 22, 46, 0.75);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-top: 1px solid rgba(255, 255, 255, 0.45);
+      border-radius: var(--radius-pill);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35), inset 0 1px 2px rgba(255, 255, 255, 0.35);
+      margin-bottom: 16px;
     }
     .glass-title-box h2, .glass-title-box h3 {
-      font-size: 19px; font-weight: 800; letter-spacing: -0.02em;
+      font-size: 17px; font-weight: 800; letter-spacing: -0.02em;
       background: linear-gradient(135deg, #ffffff 40%, #93c5fd 100%);
       -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin: 0;
     }
 
-    @keyframes floatSubtle { 0% { transform: translateY(0px); } 100% { transform: translateY(-3px); } }
-
+    /* Live Crawler Bar */
     .crawler-bar {
       display: flex; justify-content: space-between; align-items: center;
-      padding: 10px 18px; margin-bottom: 16px; border-radius: var(--radius-sm);
-      background: rgba(16, 185, 129, 0.08); border: 1px solid rgba(16, 185, 129, 0.3); font-size: 12.5px;
+      padding: 11px 20px; margin-bottom: 20px; border-radius: var(--radius-sm);
+      background: rgba(16, 185, 129, 0.07);
+      border: 1px solid rgba(16, 185, 129, 0.28);
+      border-top: 1px solid rgba(16, 185, 129, 0.5);
+      font-size: 12.5px;
+      backdrop-filter: blur(14px);
     }
     .pulse-dot {
-      display: inline-block; width: 9px; height: 9px; border-radius: 50%;
-      background: #10b981; margin-right: 6px; box-shadow: 0 0 10px #10b981; animation: pulse 1.8s infinite;
+      display: inline-block; width: 8px; height: 8px; border-radius: 50%;
+      background: #10b981; margin-right: 8px; box-shadow: 0 0 10px #10b981;
+      animation: softPulse 2s infinite ease-in-out;
     }
-    @keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.4; transform: scale(0.85); } }
-
-    header {
-      position: sticky; top: 0; z-index: 50; backdrop-filter: blur(20px);
-      background: rgba(10, 17, 30, 0.75); border-bottom: 1px solid var(--border);
-      padding: 14px 28px; display: flex; justify-content: space-between; align-items: center;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
-    }
-    .brand {
-      font-size: 18px; font-weight: 800; display: flex; align-items: center; gap: 10px;
-      padding: 6px 14px; border-radius: 9999px; background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.18);
-    }
-    .brand span { background: linear-gradient(135deg, #1e3a8a, #2563eb); color: #bfdbfe; font-size: 11px; padding: 3px 10px; border-radius: 9999px; font-weight: 700; }
-
-    nav { display: flex; gap: 8px; }
-    nav button {
-      background: rgba(255,255,255,0.04); color: var(--muted); border: 1px solid rgba(255,255,255,0.08);
-      padding: 9px 18px; border-radius: var(--radius-sm); font-weight: 700; font-size: 13px; cursor: pointer; transition: 0.2s;
-    }
-    nav button:hover { color: #fff; background: rgba(255,255,255,0.1); transform: translateY(-2px); }
-    nav button.active {
-      background: linear-gradient(135deg, rgba(37,99,235,0.35), rgba(56,189,248,0.2));
-      color: #38bdf8; border-color: rgba(56,189,248,0.5); box-shadow: 0 4px 18px rgba(56,189,248,0.25);
+    @keyframes softPulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.85); }
     }
 
-    main { max-width: 1400px; margin: 0 auto; padding: 28px 24px; }
-    .card { padding: 24px; margin-bottom: 24px; }
-
-    .filter-grid { display: grid; grid-template-columns: 2.2fr 1.3fr auto auto; gap: 14px; margin-bottom: 18px; }
-    label.flab { display: block; font-size: 12px; font-weight: 700; color: #94a3b8; margin-bottom: 6px; }
+    .filter-grid {
+      display: grid; grid-template-columns: 2.2fr 1.3fr auto auto; gap: 14px; margin-bottom: 18px;
+    }
+    label.flab {
+      display: block; font-size: 11.5px; font-weight: 700; color: #94a3b8;
+      margin-bottom: 7px; text-transform: uppercase; letter-spacing: 0.05em;
+    }
     select, input, textarea {
-      width: 100%; background: rgba(8, 14, 24, 0.7); border: 1px solid var(--border);
-      color: var(--text); padding: 12px 16px; border-radius: var(--radius-sm);
-      font-family: inherit; font-size: 14px; outline: none; transition: 0.25s;
+      width: 100%;
+      background: rgba(9, 17, 36, 0.82);
+      border: 1px solid var(--glass-border);
+      border-top: 1px solid rgba(255, 255, 255, 0.24);
+      color: var(--text); padding: 13px 16px; border-radius: var(--radius-sm);
+      font-family: inherit; font-size: 13.5px; outline: none;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
     }
-    select:focus, input:focus, textarea:focus { border-color: #38bdf8; box-shadow: 0 0 0 3px rgba(56,189,248,0.25); }
+    select:focus, input:focus, textarea:focus {
+      border-color: #3b82f6;
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.28), inset 0 1px 2px rgba(255, 255, 255, 0.12);
+      background: rgba(12, 22, 46, 0.92);
+    }
 
+    /* Buttons */
     .btn {
       display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-      padding: 12px 20px; border-radius: var(--radius-sm); font-weight: 700; font-size: 14px;
-      cursor: pointer; border: 1px solid transparent; transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      padding: 12px 22px; border-radius: var(--radius-sm); font-weight: 700; font-size: 13.5px;
+      cursor: pointer; border: 1px solid transparent; transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
       position: relative; overflow: hidden; user-select: none;
     }
-    .btn:active, .job-card:active, nav button:active { transform: scale(0.96) !important; }
-    .btn-primary { background: linear-gradient(135deg, #2563eb, #38bdf8); color: #fff; box-shadow: 0 8px 24px rgba(37,99,235,0.35); }
-    .btn-purple { background: linear-gradient(135deg, #7c3aed, #c084fc); color: #fff; }
-    .btn-secondary { background: rgba(255, 255, 255, 0.06); color: var(--text); border: 1px solid rgba(255, 255, 255, 0.15); }
+    .btn:active, .job-card:active, nav button:active {
+      transform: scale(0.97) !important;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, #1d4ed8 0%, #3b82f6 100%);
+      color: #fff;
+      border-top: 1px solid rgba(255, 255, 255, 0.5);
+      box-shadow: 0 8px 24px rgba(29, 78, 216, 0.4);
+    }
+    .btn-primary:hover {
+      box-shadow: 0 12px 30px rgba(59, 130, 246, 0.55);
+      transform: translateY(-1.5px);
+    }
+    .btn-purple {
+      background: linear-gradient(135deg, #0284c7 0%, #38bdf8 100%);
+      color: #fff;
+      border-top: 1px solid rgba(255, 255, 255, 0.5);
+      box-shadow: 0 8px 24px rgba(2, 132, 199, 0.4);
+    }
+    .btn-purple:hover {
+      box-shadow: 0 12px 30px rgba(56, 189, 248, 0.55);
+      transform: translateY(-1.5px);
+    }
+    .btn-gold {
+      background: linear-gradient(135deg, #d97706 0%, #f59e0b 100%);
+      color: #070e1e; font-weight: 800;
+      border-top: 1px solid rgba(255, 255, 255, 0.6);
+      box-shadow: 0 8px 24px rgba(217, 119, 6, 0.4);
+    }
+    .btn-gold:hover {
+      box-shadow: 0 12px 30px rgba(245, 158, 11, 0.6);
+      transform: translateY(-1.5px);
+    }
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-top: 1px solid rgba(255, 255, 255, 0.3);
+      backdrop-filter: blur(14px);
+    }
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.12);
+      border-color: rgba(255, 255, 255, 0.32);
+      transform: translateY(-1.5px);
+    }
 
+    /* Soft Liquid Click Ripple */
     .liquid-ripple {
       position: absolute; border-radius: 50%; transform: scale(0);
-      animation: rippleAnim 0.65s cubic-bezier(0.1, 0.8, 0.3, 1);
-      background: radial-gradient(circle, rgba(56, 189, 248, 0.65) 0%, rgba(139, 92, 246, 0.35) 50%, rgba(255, 255, 255, 0) 75%);
+      animation: rippleFlow 0.65s cubic-bezier(0.1, 0.8, 0.2, 1);
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.65) 0%, rgba(59, 130, 246, 0.35) 50%, transparent 75%);
       pointer-events: none; z-index: 99;
     }
-    @keyframes rippleAnim { to { transform: scale(2.8); opacity: 0; } }
+    @keyframes rippleFlow { to { transform: scale(3.2); opacity: 0; } }
 
-    .job-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)); gap: 20px; }
-    .job-card {
-      background: linear-gradient(145deg, rgba(255, 255, 255, 0.07) 0%, rgba(255, 255, 255, 0.015) 100%), rgba(15, 23, 42, 0.65);
-      backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.1);
-      border-top: 1px solid rgba(255, 255, 255, 0.3); border-radius: var(--radius);
-      padding: 20px; cursor: pointer; transition: all 0.3s ease;
-      display: flex; flex-direction: column; justify-content: space-between;
-      position: relative; overflow: hidden; animation: cardEnter 0.5s ease-out both;
+    /* Job Card Grid */
+    .job-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)); gap: 20px;
     }
-    @keyframes cardEnter { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
+    .job-card {
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.015) 100%), var(--surface);
+      backdrop-filter: blur(28px) saturate(180%);
+      -webkit-backdrop-filter: blur(28px) saturate(180%);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-top: 1px solid rgba(255, 255, 255, 0.35);
+      border-left: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: var(--radius);
+      padding: 22px; cursor: pointer;
+      display: flex; flex-direction: column; justify-content: space-between;
+      position: relative; overflow: hidden;
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      animation: cardFadeIn 0.45s ease-out both;
+    }
+    @keyframes cardFadeIn { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+
     .job-card:hover {
-      border-color: rgba(56, 189, 248, 0.4); transform: translateY(-5px);
-      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.45), 0 0 20px rgba(56, 189, 248, 0.2);
+      border-color: rgba(59, 130, 246, 0.45);
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.14) 0%, rgba(59, 130, 246, 0.05) 100%), var(--surface-elevated);
+      transform: translateY(-4px);
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.6), 0 0 25px rgba(59, 130, 246, 0.25);
     }
     .job-title-pill {
-      background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.12);
-      border-top: 1px solid rgba(255, 255, 255, 0.25); padding: 8px 12px; border-radius: var(--radius-sm);
-      margin-bottom: 10px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-top: 1px solid rgba(255, 255, 255, 0.28);
+      padding: 9px 13px; border-radius: var(--radius-sm);
+      margin-bottom: 12px;
     }
-    .tag { font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 9999px; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); color: var(--muted); }
-    .tag-visa { color: #34d399; background: rgba(16,185,129,0.15); border-color: rgba(16,185,129,0.4); }
-    .tag-country { color: #38bdf8; background: rgba(56,189,248,0.15); border-color: rgba(56,189,248,0.4); }
+    .job-title-text {
+      font-weight: 700; font-size: 15px; color: #fff; line-height: 1.35;
+    }
+    .job-meta-line {
+      font-size: 13px; color: var(--text-muted); margin-bottom: 16px; padding-left: 2px;
+    }
 
+    .tag {
+      font-size: 11px; font-weight: 700; padding: 4px 11px;
+      border-radius: var(--radius-pill);
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: var(--text-muted);
+      backdrop-filter: blur(8px);
+    }
+    .tag-visa {
+      color: #34d399; background: rgba(16, 185, 129, 0.14);
+      border-color: rgba(16, 185, 129, 0.4);
+    }
+    .tag-country {
+      color: #93c5fd; background: rgba(59, 130, 246, 0.14);
+      border-color: rgba(59, 130, 246, 0.4);
+    }
+
+    /* Resume Dropzone */
     .dropzone {
-      border: 2px dashed rgba(56, 189, 248, 0.5); border-radius: var(--radius);
-      padding: 32px; text-align: center; background: rgba(37,99,235,0.06); cursor: pointer; transition: 0.3s;
-      margin-bottom: 18px; position: relative; overflow: hidden;
+      border: 2px dashed rgba(59, 130, 246, 0.5);
+      border-radius: var(--radius); padding: 36px; text-align: center;
+      background: rgba(29, 78, 216, 0.06); cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      margin-bottom: 20px; position: relative; overflow: hidden;
+    }
+    .dropzone:hover {
+      background: rgba(29, 78, 216, 0.12);
+      border-color: #3b82f6;
+      box-shadow: 0 0 28px rgba(59, 130, 246, 0.3);
+      transform: translateY(-2px);
+    }
+
+    /* European Document Frame Preview */
+    .document-preview-frame {
+      background: #081126;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-top: 1px solid rgba(255, 255, 255, 0.35);
+      border-radius: var(--radius-sm);
+      padding: 24px;
+      box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
+      margin-top: 14px;
+    }
+
+    /* ==========================================================================
+       3D PERSPECTIVE ANIMATED SLIDE DRAWER
+       ========================================================================== */
+    .drawer-perspective-root {
+      position: fixed; inset: 0; pointer-events: none; z-index: 101;
+      perspective: 1600px;
+      perspective-origin: calc(100% - 250px) 50%;
     }
 
     .drawer-overlay {
-      position: fixed; inset: 0; background: rgba(4, 9, 18, 0.7); backdrop-filter: blur(8px);
-      z-index: 100; opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
+      position: fixed; inset: 0; background: rgba(3, 8, 20, 0.75);
+      backdrop-filter: blur(12px); z-index: 100; opacity: 0;
+      pointer-events: none; transition: opacity 0.4s ease;
     }
     .drawer-overlay.open { opacity: 1; pointer-events: auto; }
+
     .drawer {
-      position: fixed; top: 0; right: 0; bottom: 0; width: 100%; max-width: var(--drawer-w);
-      background: linear-gradient(160deg, rgba(20, 30, 52, 0.95), rgba(10, 16, 28, 0.98));
-      backdrop-filter: blur(28px); border-left: 1px solid rgba(255, 255, 255, 0.2);
-      z-index: 101; transform: translateX(100%); transition: transform 0.4s cubic-bezier(0.16,1,0.3,1);
+      position: absolute; top: 0; right: 0; bottom: 0;
+      width: 100%; max-width: var(--drawer-w);
+      background: linear-gradient(165deg, rgba(14, 25, 54, 0.96), rgba(7, 14, 30, 0.98));
+      backdrop-filter: blur(34px);
+      border-left: 1px solid rgba(255, 255, 255, 0.28);
+      border-top: 1px solid rgba(255, 255, 255, 0.38);
+      pointer-events: auto;
+      transform-style: preserve-3d;
+      transform: translateX(115%) rotateY(-24deg) scale(0.9) translateZ(-60px);
+      opacity: 0;
+      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease, box-shadow 0.6s ease;
       display: flex; flex-direction: column;
+      box-shadow: -30px 0 80px rgba(0, 0, 0, 0.9);
     }
-    .drawer.open { transform: translateX(0); }
-    .drawer-header { padding: 22px 28px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: flex-start; }
-    .drawer-body { padding: 28px; overflow-y: auto; flex: 1; }
-    .drawer-footer { padding: 18px 28px; border-top: 1px solid var(--border); display: flex; gap: 14px; }
+    .drawer.open {
+      transform: translateX(0) rotateY(0deg) scale(1) translateZ(0);
+      opacity: 1;
+    }
+
+    .drawer-header {
+      padding: 24px 30px; border-bottom: 1px solid var(--glass-border);
+      display: flex; justify-content: space-between; align-items: flex-start;
+      transform: translateZ(10px);
+    }
+    .drawer-body { padding: 30px; overflow-y: auto; flex: 1; }
+    .drawer-footer {
+      padding: 20px 30px; border-top: 1px solid var(--glass-border);
+      display: flex; gap: 14px; background: rgba(6, 12, 26, 0.65);
+      transform: translateZ(10px);
+    }
 
     .ai-box {
-      margin-top: 18px; padding: 18px; background: rgba(8, 14, 26, 0.85);
-      border: 1px solid rgba(139,92,246,0.35); border-top: 1px solid rgba(192, 132, 252, 0.5);
-      border-radius: var(--radius-sm); font-size: 13.5px; line-height: 1.7; white-space: pre-wrap;
+      margin-top: 14px; padding: 18px; background: rgba(7, 14, 30, 0.88);
+      border: 1px solid rgba(59, 130, 246, 0.35); border-top: 1px solid rgba(147, 197, 253, 0.5);
+      border-radius: var(--radius-sm); font-size: 13px; line-height: 1.7; white-space: pre-wrap;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+      transform: translateZ(15px);
     }
 
     .link-box {
-      background: rgba(37,99,235,0.08); border: 1px solid rgba(56,189,248,0.25);
-      padding: 12px 14px; border-radius: var(--radius-sm); margin-bottom: 16px; font-size: 12.5px;
+      background: rgba(29, 78, 216, 0.09); border: 1px solid rgba(59, 130, 246, 0.3);
+      padding: 12px 16px; border-radius: var(--radius-sm); margin-bottom: 18px; font-size: 12px;
+      transform: translateZ(12px);
     }
 
-    @media(max-width:980px){ .filter-grid { grid-template-columns: 1fr; } :root { --drawer-w: 100%; } }
+    @media(max-width:980px){
+      .filter-grid { grid-template-columns: 1fr; }
+      :root { --drawer-w: 100%; }
+      header { padding: 12px 18px; }
+      main { padding: 20px 16px; }
+    }
   </style>
 </head>
 <body>
 
-<div class="liquid-blob-1"></div>
-<div class="liquid-blob-2"></div>
-<div class="liquid-blob-3"></div>
+<!-- Interactive Canvas for White Wavy Line Following Mouse -->
+<canvas id="wave-canvas"></canvas>
 
 <header>
-  <div class="brand">🇪🇺 EuroJobs Pro <span>Direct Offer Links</span></div>
+  <div class="brand-wrap">
+    <div class="eu-flag-emblem">🇪🇺</div>
+    <div class="brand-title">
+      EuroJobs Pro <span>Official European Mobility</span>
+    </div>
+  </div>
   <nav>
     <button class="active" onclick="tab('search')">💼 Find Jobs</button>
     <button onclick="tab('cv')">📄 Upload CV & Profile</button>
+    <button onclick="tab('letter')">✍️ Cover Letter Studio</button>
     <button onclick="tab('ai')">⚡ AI Engine</button>
     <button onclick="tab('saved')">📌 Saved (<span id="sv-count">0</span>)</button>
   </nav>
 </header>
 
 <main>
+  <!-- 1. JOB SEARCH VIEW -->
   <section id="v-search">
     <div class="card liquid-glass">
       <div class="glass-title-box">
         <span>🎯</span>
-        <h2>42 European Industries · Direct Application Portal Links</h2>
+        <h2>53 European In-Demand Occupations & Mobility Portal</h2>
       </div>
 
       <div class="crawler-bar">
         <div>
           <span class="pulse-dot"></span>
           <b style="color:#10b981;">Automated Ingestion Engine:</b>
-          <span id="cr-status">Tracking 42 sectors with direct vacancy links...</span>
+          <span id="cr-status">Tracking 53 sectors with direct vacancy links...</span>
         </div>
-        <div style="color:var(--muted);" id="cr-last">Last sweep: Checking...</div>
+        <div style="color:var(--text-muted);" id="cr-last">Last sweep: Active</div>
       </div>
 
       <div class="filter-grid">
         <div>
-          <label class="flab">Select Desired Profession (42 Shortage Fields)</label>
+          <label class="flab">European Shortage Profession (53 Categories)</label>
           <select id="role-select" onchange="runSearch()">
-            <option value="all">⭐ All 42 European Shortage Occupations</option>
+            <option value="all">⭐ All 53 European Shortage Occupations</option>
             
+            <optgroup label="💻 IT, Software & Cloud (4)">
+              <option value="software_eng">Software Engineer & Full Stack Developer (EU Blue Card)</option>
+              <option value="devops_cloud">Cloud DevOps & Site Reliability Engineer</option>
+              <option value="data_analyst">Data Analyst & Business Intelligence Specialist</option>
+              <option value="cybersecurity">Cybersecurity Analyst & Systems Administrator</option>
+            </optgroup>
+
+            <optgroup label="📐 Engineering & Technical Design (3)">
+              <option value="civil_engineer">Civil Engineer & Construction Site Manager</option>
+              <option value="mechanical_engineer">Mechanical Design & Robotics Engineer</option>
+              <option value="electrical_engineer">Electrical Systems & Electronics Engineer</option>
+            </optgroup>
+
+            <optgroup label="🏢 Administration, Business & Office (4)">
+              <option value="admin_assistant">Administrative Assistant & Office Coordinator</option>
+              <option value="customer_advisor">Multilingual Customer Advisor & Support</option>
+              <option value="accountant">Financial Accountant & Corporate Bookkeeper</option>
+              <option value="hr_recruiter">HR Specialist & Talent Acquisition Recruiter</option>
+            </optgroup>
+
             <optgroup label="🚗 Driving, Transport & Delivery (5)">
               <option value="driver_car">Chauffeur & Passenger Car Driver (Cat. B)</option>
               <option value="driver_courier">Courier & Van Delivery Driver (Cat. B)</option>
@@ -824,29 +1107,29 @@ async def serve_frontend():
         </div>
 
         <div style="display:flex; align-items:flex-end;">
-          <button class="btn btn-primary" onclick="runSearch()" style="width:100%; height:46px;">Filter</button>
+          <button class="btn btn-primary" onclick="runSearch()" style="width:100%; height:48px;">Filter</button>
         </div>
 
         <div style="display:flex; align-items:flex-end;">
-          <button class="btn btn-secondary" onclick="triggerManualCrawl()" style="width:100%; height:46px;" title="Re-crawl all 42 sectors immediately">🔄 Crawl 42 Sectors</button>
+          <button class="btn btn-secondary" onclick="triggerManualCrawl()" style="width:100%; height:48px;" title="Re-crawl all 53 sectors immediately">🔄 Crawl 53 Sectors</button>
         </div>
       </div>
 
-      <div style="display:flex; align-items:center; gap:10px; font-size:13px; color:var(--muted);">
+      <div style="display:flex; align-items:center; gap:10px; font-size:13px; color:var(--text-muted);">
         <input type="checkbox" id="only-visa" onchange="runSearch()" style="width:18px;height:18px;cursor:pointer;">
         <label for="only-visa" style="cursor:pointer;"><b style="color:#34d399">Only display verified jobs with Work Visa / Fast-track FEG Immigration</b></label>
       </div>
     </div>
 
-    <div style="display:flex; justify-content:space-between; margin-bottom:14px; font-size:13px; color:var(--muted); padding: 0 4px;">
-      <span id="st-count">Scanning live European jobs database...</span>
+    <div style="display:flex; justify-content:space-between; margin-bottom:14px; font-size:13px; color:var(--text-muted); padding: 0 4px;">
+      <span id="st-count">Loading 53 European shortage professions...</span>
       <span>Direct Application Links Enabled</span>
     </div>
 
     <div id="job-grid" class="job-grid"></div>
   </section>
 
-  <!-- CV PARSER VIEW -->
+  <!-- 2. CV PARSER VIEW -->
   <section id="v-cv" style="display:none;">
     <div class="card liquid-glass" style="max-width:850px; margin:0 auto;">
       <div class="glass-title-box">
@@ -855,9 +1138,9 @@ async def serve_frontend():
       </div>
       <div class="dropzone" onclick="document.getElementById('cv-file').click()">
         <input type="file" id="cv-file" accept=".pdf,.txt" style="display:none;" onchange="handleCVUpload(this.files[0])">
-        <div style="font-size:32px; margin-bottom:8px;">📄</div>
+        <div style="font-size:36px; margin-bottom:8px;">📄</div>
         <div style="font-weight:700; font-size:16px; color:#fff;">Click or Drag & Drop your CV here</div>
-        <div style="font-size:12px; color:var(--muted); margin-top:4px;">Supports PDF or TXT documents. All data stays private in your browser.</div>
+        <div style="font-size:12px; color:var(--text-muted); margin-top:4px;">Supports PDF or TXT documents. All parsing stays private in your browser.</div>
       </div>
       <div id="cv-parse-status" style="font-size:13px; font-weight:600; color:#38bdf8; margin-bottom:16px;"></div>
 
@@ -868,13 +1151,53 @@ async def serve_frontend():
         <div><label class="flab">Phone / WhatsApp</label><input id="p-phone"></div>
       </div>
       <div style="margin-bottom:14px;"><label class="flab">Languages</label><input id="p-langs"></div>
-      <div style="margin-bottom:14px;"><label class="flab">Key Skills, Driving Licences & Accreditations</label><input id="p-skills" placeholder="e.g. Cat. B Driving, Car Diagnostics, TIG Welding, CE License"></div>
+      <div style="margin-bottom:14px;"><label class="flab">Key Skills, Diplomas & Driving Licences</label><input id="p-skills" placeholder="e.g. Python, Civil Engineering, Office Management, Cat. B Driving, TIG Welding"></div>
       <div style="margin-bottom:18px;"><label class="flab">Work Experience</label><textarea id="p-exp" rows="6"></textarea></div>
-      <button class="btn btn-primary" onclick="saveProfileManually()">Save Profile</button>
+      <button class="btn btn-primary" onclick="saveProfileManually()">Save Profile Changes</button>
     </div>
   </section>
 
-  <!-- AI ENGINE CONFIG -->
+  <!-- 3. COVER LETTER STUDIO WITH NATIVE PDF EXPORT -->
+  <section id="v-letter" style="display:none;">
+    <div class="card liquid-glass" style="max-width:920px; margin:0 auto;">
+      <div class="glass-title-box">
+        <span>✍️</span>
+        <h2>European Cover Letter & Motivation Letter Studio</h2>
+      </div>
+      <p style="color:var(--text-muted); font-size:13px; margin-bottom:18px;">
+        Generate formal, Europass-compliant letters of motivation tailored to any role across 53 European industries. Automatically uses your candidate profile details.
+      </p>
+
+      <div style="display:grid; grid-template-columns:1.5fr 1fr 1fr; gap:12px; margin-bottom:16px;">
+        <div>
+          <label class="flab">Target Job Title</label>
+          <input id="cl-title" placeholder="e.g. Software Engineer / Chauffeur / Nurse / Electrician" value="Software Engineer">
+        </div>
+        <div>
+          <label class="flab">Target Employer</label>
+          <input id="cl-company" placeholder="e.g. European Operations GmbH" value="European Operations GmbH">
+        </div>
+        <div>
+          <label class="flab">Destination Country</label>
+          <input id="cl-country" placeholder="e.g. Germany / France / Netherlands" value="Germany">
+        </div>
+      </div>
+
+      <div style="display:flex; gap:10px; margin-bottom:16px; flex-wrap:wrap;">
+        <button class="btn btn-purple" onclick="generateStudioLetter()">⚡ Generate Letter</button>
+        <button class="btn btn-gold" onclick="downloadStudioLetterPDF()">📄 Export as PDF</button>
+        <button class="btn btn-secondary" onclick="copyStudioLetter()">📋 Copy to Clipboard</button>
+        <button class="btn btn-secondary" onclick="downloadStudioLetterTXT()">📥 Download (.txt)</button>
+      </div>
+
+      <div class="document-preview-frame">
+        <label class="flab" style="color:#93c5fd;">Formal European Letter Preview (Editable)</label>
+        <textarea id="cl-output" rows="18" style="font-family:'JetBrains Mono', monospace; font-size:12.5px; line-height:1.7; white-space:pre-wrap; border:none; background:transparent; padding:0;"></textarea>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. AI ENGINE CONFIG VIEW -->
   <section id="v-ai" style="display:none;">
     <div class="card liquid-glass" style="max-width:650px; margin:0 auto;">
       <div class="glass-title-box"><span>⚡</span><h2>AI Engine Configuration</h2></div>
@@ -892,7 +1215,7 @@ async def serve_frontend():
     </div>
   </section>
 
-  <!-- SAVED VIEW -->
+  <!-- 5. SAVED VIEW -->
   <section id="v-saved" style="display:none;">
     <div class="card liquid-glass" style="max-width:850px; margin:0 auto;">
       <div class="glass-title-box"><span>📌</span><h2>Saved European Applications</h2></div>
@@ -901,63 +1224,144 @@ async def serve_frontend():
   </section>
 </main>
 
-<!-- SLIDE-IN DETAIL DRAWER -->
+<!-- 3D PERSPECTIVE DRAWER ROOT & MODAL -->
 <div class="drawer-overlay" id="overlay" onclick="closeDrawer()"></div>
-<div class="drawer" id="drawer">
-  <div class="drawer-header">
-    <div style="flex: 1; padding-right: 14px;">
-      <div class="glass-title-box" style="margin-bottom: 6px; width:100%;">
-        <h3 id="d-title" style="font-size:17px;">Position Title</h3>
+<div class="drawer-perspective-root">
+  <div class="drawer" id="drawer">
+    <div class="drawer-header">
+      <div style="flex: 1; padding-right: 14px;">
+        <div class="glass-title-box" style="margin-bottom: 6px; width:100%;">
+          <h3 id="d-title" style="font-size:16.5px;">Position Title</h3>
+        </div>
+        <div id="d-company" style="font-size:13px; color:var(--text-muted); padding-left: 4px;">Company · Country</div>
       </div>
-      <div id="d-company" style="font-size:13px; color:var(--muted); padding-left: 4px;">Company · Country</div>
-    </div>
-    <button onclick="closeDrawer()" class="btn btn-secondary" style="border-radius:50%; width:36px; height:36px; padding:0;">&times;</button>
-  </div>
-
-  <div class="drawer-body">
-    <div style="display:flex; gap:8px; margin-bottom:18px; flex-wrap: wrap;">
-      <span class="tag tag-visa" id="d-visa">Visa Support</span>
-      <span class="tag tag-country" id="d-country">Country</span>
-      <span class="tag" id="d-salary">Salary</span>
+      <button onclick="closeDrawer()" class="btn btn-secondary" style="border-radius:50%; width:36px; height:36px; padding:0;">&times;</button>
     </div>
 
-    <div class="link-box">
-      <div style="color:#93c5fd; font-weight:700; margin-bottom:4px;">📍 Direct Application Target:</div>
-      <div id="d-source-url" style="color:#cbd5e1; word-break:break-all; font-family:monospace; font-size:11.5px;"></div>
-    </div>
-
-    <div class="card liquid-glass" style="padding:16px; margin-bottom:20px;">
-      <div style="font-weight:700; font-size:13px; color:#c084fc; margin-bottom:10px;">⚡ AI Legal Feasibility & Cover Letter</div>
-      <div style="display:flex; gap:10px; flex-wrap:wrap;">
-        <button class="btn btn-purple" style="font-size:12px; padding:10px 14px;" onclick="runAIVisa()">Evaluate Legal Visa Chance</button>
-        <button class="btn btn-secondary" style="font-size:12px; padding:10px 14px;" onclick="runAICoverLetter()">Draft European Cover Letter</button>
+    <div class="drawer-body">
+      <div style="display:flex; gap:8px; margin-bottom:18px; flex-wrap: wrap;">
+        <span class="tag tag-visa" id="d-visa">Visa Support</span>
+        <span class="tag tag-country" id="d-country">Country</span>
+        <span class="tag" id="d-salary">Salary</span>
       </div>
-      <div id="d-ai-box" class="ai-box" style="display:none;">
-        <span style="font-size:11px; color:#c084fc; font-weight:800; display:block;" id="d-ai-source">Engine Output</span>
-        <div id="d-ai-text"></div>
+
+      <div class="link-box">
+        <div style="color:#93c5fd; font-weight:700; margin-bottom:4px;">📍 Direct Application Target:</div>
+        <div id="d-source-url" style="color:#cbd5e1; word-break:break-all; font-family:'JetBrains Mono', monospace; font-size:11.5px;"></div>
       </div>
+
+      <!-- AI ACTIONS -->
+      <div class="card liquid-glass" style="padding:16px; margin-bottom:18px;">
+        <div style="font-weight:700; font-size:13px; color:#38bdf8; margin-bottom:10px;">⚡ AI Legal Feasibility & Cover Letter</div>
+        <div style="display:flex; gap:10px; flex-wrap:wrap;">
+          <button class="btn btn-primary" style="font-size:12px; padding:10px 14px;" onclick="runAIVisa()">Evaluate Legal Visa Chance</button>
+          <button class="btn btn-purple" style="font-size:12px; padding:10px 14px;" onclick="runAICoverLetter()">Draft European Cover Letter</button>
+        </div>
+
+        <!-- Legal Feasibility Output -->
+        <div id="d-ai-box-visa" class="ai-box" style="display:none; border-color:rgba(16,185,129,0.35);">
+          <span style="font-size:11px; color:#34d399; font-weight:800; display:block;" id="d-ai-source-visa">Legal Assessment</span>
+          <div id="d-ai-text-visa"></div>
+        </div>
+
+        <!-- Dedicated Drawer Cover Letter Output -->
+        <div id="d-ai-box-letter" class="ai-box" style="display:none; border-color:rgba(59,130,246,0.35);">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px; flex-wrap:wrap; gap:6px;">
+            <span style="font-size:11px; color:#93c5fd; font-weight:800;" id="d-ai-source-letter">European Cover Letter</span>
+            <div style="display:flex; gap:6px;">
+              <button class="btn btn-gold" style="padding:4px 10px; font-size:11px;" onclick="downloadDrawerLetterPDF()">📄 Export PDF</button>
+              <button class="btn btn-secondary" style="padding:4px 10px; font-size:11px;" onclick="copyDrawerLetter()">📋 Copy</button>
+            </div>
+          </div>
+          <div id="d-ai-text-letter" style="font-family:'JetBrains Mono', monospace; font-size:12px;"></div>
+        </div>
+      </div>
+
+      <div class="glass-title-box" style="padding: 6px 14px; margin-bottom: 10px;">
+        <h3 style="font-size: 13.5px;">Position Details & Requirements</h3>
+      </div>
+      <div id="d-desc" style="font-size:13.5px; line-height:1.7; color:#cbd5e1; padding: 4px;"></div>
     </div>
 
-    <div class="glass-title-box" style="padding: 6px 14px; margin-bottom: 10px;">
-      <h3 style="font-size: 14px;">Position Details & Requirements</h3>
+    <div class="drawer-footer">
+      <a id="d-apply" href="#" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="flex:1; text-decoration:none;">Apply on Direct Portal ↗</a>
+      <button id="d-save-btn" class="btn btn-secondary" onclick="toggleSaveCurrent()">Save</button>
     </div>
-    <div id="d-desc" style="font-size:13.5px; line-height:1.7; color:#cbd5e1; padding: 4px;"></div>
-  </div>
-
-  <div class="drawer-footer">
-    <a id="d-apply" href="#" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="flex:1; text-decoration:none;">Apply on Direct Portal ↗</a>
-    <button id="d-save-btn" class="btn btn-secondary" onclick="toggleSaveCurrent()">Save</button>
   </div>
 </div>
 
 <script>
+// ==========================================================================
+// INTERACTIVE WHITE WAVY LINES CANVAS (Moves with mouse pointer)
+// ==========================================================================
+const canvas = document.getElementById('wave-canvas');
+const ctx = canvas.getContext('2d');
+let width, height;
+let mouse = { x: window.innerWidth / 2, y: window.innerHeight / 2, targetX: window.innerWidth / 2, targetY: window.innerHeight / 2 };
+
+function resizeCanvas() {
+  width = canvas.width = window.innerWidth;
+  height = canvas.height = window.innerHeight;
+}
+window.addEventListener('resize', resizeCanvas);
+resizeCanvas();
+
+window.addEventListener('mousemove', function(e) {
+  mouse.targetX = e.clientX;
+  mouse.targetY = e.clientY;
+});
+
+let waveStep = 0;
+function renderInteractiveWaves() {
+  // Smoothly damp mouse position toward cursor
+  mouse.x += (mouse.targetX - mouse.x) * 0.055;
+  mouse.y += (mouse.targetY - mouse.y) * 0.055;
+
+  ctx.clearRect(0, 0, width, height);
+
+  waveStep += 0.018;
+
+  // 3 Soft organic glowing white waves responding dynamically
+  for (let j = 0; j < 3; j++) {
+    ctx.beginPath();
+    ctx.lineWidth = 1.4 + j * 0.6;
+    ctx.strokeStyle = `rgba(255, 255, 255, ${0.15 + j * 0.12})`;
+    ctx.shadowBlur = 14;
+    ctx.shadowColor = "rgba(255, 255, 255, 0.4)";
+
+    const waveBaseY = mouse.y + (j - 1) * 36;
+    ctx.moveTo(0, waveBaseY);
+
+    const segments = 45;
+    for (let i = 0; i <= segments; i++) {
+      const x = (width / segments) * i;
+      const distToMouse = Math.abs(x - mouse.x);
+      const mouseInfluence = Math.max(0, 1 - distToMouse / (width * 0.65));
+
+      const freq = 0.0035 + j * 0.0007;
+      const wave = Math.sin(x * freq + waveStep + j) * (26 + mouseInfluence * 42)
+                 + Math.cos(x * 0.007 - waveStep * 1.4) * 10;
+
+      const y = waveBaseY + wave;
+      ctx.lineTo(x, y);
+    }
+    ctx.stroke();
+  }
+
+  requestAnimationFrame(renderInteractiveWaves);
+}
+renderInteractiveWaves();
+
+// ==========================================================================
+// APPLICATION DATA & ACTIONS
+// ==========================================================================
 let currentJobs = [];
 let selectedJob = null;
-let savedJobs = JSON.parse(localStorage.getItem('eur_saved_v4') || '{}');
-let profile = JSON.parse(localStorage.getItem('eur_prof_v4') || '{}');
-let aiSettings = JSON.parse(localStorage.getItem('eur_ai_v4') || '{"provider":"gemini","key":""}');
+let savedJobs = JSON.parse(localStorage.getItem('eur_saved_v8') || '{}');
+let profile = JSON.parse(localStorage.getItem('eur_prof_v8') || '{}');
+let aiSettings = JSON.parse(localStorage.getItem('eur_ai_v8') || '{"provider":"gemini","key":""}');
 
-// Liquid Ripple Click Effect
+// Soft Fluid Ripple Click Effect
 document.addEventListener('pointerdown', function(e) {
   const target = e.target.closest('.btn, .job-card, nav button, .glass-title-box, .dropzone, select, input');
   if (!target) return;
@@ -979,11 +1383,13 @@ function init() {
   });
   document.getElementById('ai-provider').value = aiSettings.provider || 'gemini';
   document.getElementById('ai-key').value = aiSettings.key || '';
+
+  generateStudioLetter();
   runSearch();
 }
 
 function tab(t) {
-  ['search','cv','ai','saved'].forEach(id => {
+  ['search','cv','letter','ai','saved'].forEach(id => {
     document.getElementById('v-'+id).style.display = (id === t) ? 'block' : 'none';
   });
   document.querySelectorAll('nav button').forEach(b => {
@@ -998,16 +1404,16 @@ async function runSearch() {
   const onlyVisa = document.getElementById('only-visa').checked;
   const st = document.getElementById('st-count');
 
-  st.textContent = 'Retrieving deep-linked European vacancies...';
+  st.textContent = 'Loading verified European vacancies...';
 
   try {
     const res = await fetch(`/api/jobs?role=${encodeURIComponent(role)}&country=${encodeURIComponent(country)}&only_visa=${onlyVisa}`);
     const data = await res.json();
     currentJobs = data.jobs || [];
-    st.textContent = `Displaying ${currentJobs.length} live vacancies across 42 European industries`;
+    st.textContent = `Displaying ${currentJobs.length} live vacancies across 53 European industries`;
     
     if (data.crawler) {
-      document.getElementById('cr-status').textContent = data.crawler.is_scanning ? "Actively sweeping 42 sectors right now..." : `Tracking ${data.crawler.sectors_count} sectors (${data.crawler.total_cached} direct vacancies indexed)`;
+      document.getElementById('cr-status').textContent = data.crawler.is_scanning ? "Actively sweeping 53 sectors right now..." : `Tracking ${data.crawler.sectors_count} sectors (${data.crawler.total_cached} total vacancies indexed)`;
       document.getElementById('cr-last').textContent = `Last sweep: ${data.crawler.last_run}`;
     }
     renderGrid(currentJobs);
@@ -1021,7 +1427,7 @@ async function triggerManualCrawl() {
   btn.textContent = '⏳ Sweeping...';
   await fetch('/api/crawler/trigger', { method: 'POST' });
   setTimeout(() => {
-    btn.textContent = '🔄 Crawl 42 Sectors';
+    btn.textContent = '🔄 Crawl 53 Sectors';
     runSearch();
   }, 2500);
 }
@@ -1029,7 +1435,7 @@ async function triggerManualCrawl() {
 function renderGrid(jobs) {
   const grid = document.getElementById('job-grid');
   if(!jobs.length) {
-    grid.innerHTML = '<div class="liquid-glass" style="grid-column:1/-1; text-align:center; padding:40px; color:var(--muted);">No matching vacancies in this filter. Click "Crawl 42 Sectors" or select "All 42 European Shortage Occupations".</div>';
+    grid.innerHTML = '<div class="liquid-glass" style="grid-column:1/-1; text-align:center; padding:40px; color:var(--text-muted);">No matching vacancies in this filter. Click "Crawl 53 Sectors" or select "All 53 European Shortage Occupations".</div>';
     return;
   }
 
@@ -1037,14 +1443,14 @@ function renderGrid(jobs) {
     <div class="job-card" onclick="openDrawer('${j.id}')" style="animation-delay: ${idx * 0.02}s">
       <div>
         <div class="job-title-pill">
-          <div style="font-weight:700; font-size:15px; color:#fff; line-height: 1.35;">${escapeHtml(j.title)}</div>
+          <div class="job-title-text">${escapeHtml(j.title)}</div>
         </div>
-        <div style="font-size:13px; color:var(--muted); margin-bottom:14px; padding-left: 2px;">
+        <div class="job-meta-line">
           ${escapeHtml(j.company)} · 📍 <b>${escapeHtml(j.country)}</b> (${escapeHtml(j.city)})
         </div>
       </div>
       <div>
-        <div style="font-size:12px; font-weight:600; color:#38bdf8; margin-bottom:8px;">📡 ${escapeHtml(j.source || 'Direct Link Verified')}</div>
+        <div style="font-size:12px; font-weight:600; color:#93c5fd; margin-bottom:10px;">📡 ${escapeHtml(j.source || 'Direct Link Verified')}</div>
         <div style="display:flex; justify-content:space-between; align-items:center;">
           <div style="display:flex; gap:6px; flex-wrap: wrap;">
             ${j.visa_sponsored ? '<span class="tag tag-visa">✓ Visa / FEG Eligible</span>' : '<span class="tag">European Contract</span>'}
@@ -1079,7 +1485,12 @@ function openDrawer(id) {
   visaBadge.className = selectedJob.visa_sponsored ? 'tag tag-visa' : 'tag';
 
   document.getElementById('d-save-btn').textContent = savedJobs[selectedJob.id] ? '📌 Saved' : 'Save Offer';
-  document.getElementById('d-ai-box').style.display = 'none';
+  document.getElementById('d-ai-box-visa').style.display = 'none';
+  document.getElementById('d-ai-box-letter').style.display = 'none';
+
+  document.getElementById('cl-title').value = selectedJob.title;
+  document.getElementById('cl-company').value = selectedJob.company;
+  document.getElementById('cl-country').value = selectedJob.country;
 
   document.getElementById('overlay').classList.add('open');
   document.getElementById('drawer').classList.add('open');
@@ -1097,7 +1508,7 @@ function toggleSaveCurrent() {
   } else {
     savedJobs[selectedJob.id] = selectedJob;
   }
-  localStorage.setItem('eur_saved_v4', JSON.stringify(savedJobs));
+  localStorage.setItem('eur_saved_v8', JSON.stringify(savedJobs));
   document.getElementById('sv-count').textContent = Object.keys(savedJobs).length;
   document.getElementById('d-save-btn').textContent = savedJobs[selectedJob.id] ? '📌 Saved' : 'Save Offer';
 }
@@ -1106,18 +1517,18 @@ function renderSaved() {
   const container = document.getElementById('saved-list');
   const items = Object.values(savedJobs);
   if(!items.length) {
-    container.innerHTML = '<div style="color:var(--muted); text-align:center; padding:24px;">No saved jobs yet.</div>';
+    container.innerHTML = '<div style="color:var(--text-muted); text-align:center; padding:24px;">No saved jobs yet.</div>';
     return;
   }
   container.innerHTML = items.map(j => `
     <div class="job-card" style="flex-direction:row; align-items:center; gap: 12px;">
       <div style="flex:1;">
         <div style="font-weight:700; font-size:15px;">${escapeHtml(j.title)}</div>
-        <div style="font-size:12px; color:var(--muted); margin-top:2px;">${escapeHtml(j.company)} · ${escapeHtml(j.country)}</div>
+        <div style="font-size:12px; color:var(--text-muted); margin-top:2px;">${escapeHtml(j.company)} · ${escapeHtml(j.country)}</div>
       </div>
       <div style="display:flex; gap:8px;">
         <button class="btn btn-secondary" style="padding:8px 14px; font-size:12px;" onclick="openDrawer('${j.id}')">View</button>
-        <button class="btn btn-secondary" style="padding:8px 14px; font-size:12px; color:#f87171;" onclick="delete savedJobs['${j.id}']; localStorage.setItem('eur_saved_v4', JSON.stringify(savedJobs)); renderSaved(); document.getElementById('sv-count').textContent=Object.keys(savedJobs).length;">Remove</button>
+        <button class="btn btn-secondary" style="padding:8px 14px; font-size:12px; color:#f87171;" onclick="delete savedJobs['${j.id}']; localStorage.setItem('eur_saved_v8', JSON.stringify(savedJobs)); renderSaved(); document.getElementById('sv-count').textContent=Object.keys(savedJobs).length;">Remove</button>
       </div>
     </div>
   `).join('');
@@ -1148,8 +1559,9 @@ async function handleCVUpload(file) {
     if(phoneMatch) document.getElementById('p-phone').value = profile.phone = phoneMatch[0].trim();
 
     document.getElementById('p-exp').value = profile.experience = fullText.slice(0, 3000);
-    localStorage.setItem('eur_prof_v4', JSON.stringify(profile));
+    localStorage.setItem('eur_prof_v8', JSON.stringify(profile));
     status.textContent = '✓ Extracted candidate details from CV successfully!';
+    generateStudioLetter();
   } catch(e) {
     status.textContent = 'Please enter profile details manually.';
   }
@@ -1159,20 +1571,120 @@ function saveProfileManually() {
   ['name','email','phone','loc','langs','skills','exp'].forEach(k => {
     profile[k] = document.getElementById('p-'+k).value.trim();
   });
-  localStorage.setItem('eur_prof_v4', JSON.stringify(profile));
+  localStorage.setItem('eur_prof_v8', JSON.stringify(profile));
   alert('Profile saved.');
+  generateStudioLetter();
 }
 
 function saveAISettings() {
   aiSettings = { provider: document.getElementById('ai-provider').value, key: document.getElementById('ai-key').value.trim() };
-  localStorage.setItem('eur_ai_v4', JSON.stringify(aiSettings));
+  localStorage.setItem('eur_ai_v8', JSON.stringify(aiSettings));
   alert('AI Settings saved.');
 }
 
+async function generateStudioLetter() {
+  const title = document.getElementById('cl-title').value.trim() || 'Software Engineer';
+  const company = document.getElementById('cl-company').value.trim() || 'European Operations GmbH';
+  const country = document.getElementById('cl-country').value.trim() || 'Germany';
+  const output = document.getElementById('cl-output');
+
+  output.value = 'Synthesizing formal European motivation letter...';
+
+  try {
+    const res = await fetch('/api/ai/cover-letter', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({
+        provider: aiSettings.provider,
+        api_key: aiSettings.key || '',
+        profile: profile,
+        job_title: title,
+        company: company,
+        job_country: country,
+        job_location: country,
+        job_description: ''
+      })
+    });
+    const d = await res.json();
+    output.value = d.cover_letter;
+  } catch(e) {
+    output.value = 'Error generating letter: ' + e.message;
+  }
+}
+
+function copyStudioLetter() {
+  const text = document.getElementById('cl-output').value;
+  navigator.clipboard.writeText(text);
+  alert('✓ Cover letter copied to clipboard!');
+}
+
+function downloadStudioLetterTXT() {
+  const text = document.getElementById('cl-output').value;
+  const blob = new Blob([text], { type: 'text/plain;charset=utf-8' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = `Cover_Letter_${(document.getElementById('cl-title').value || 'Application').replace(/\s+/g, '_')}.txt`;
+  a.click();
+}
+
+// ---------------------------------------------------------------------------
+// Native jsPDF European Cover Letter PDF Exporter
+// ---------------------------------------------------------------------------
+function downloadStudioLetterPDF() {
+  const text = document.getElementById('cl-output').value.trim();
+  if(!text) { alert('Please generate a cover letter first.'); return; }
+  generatePDFDocument(text, document.getElementById('cl-title').value || 'Application');
+}
+
+function downloadDrawerLetterPDF() {
+  const text = document.getElementById('d-ai-text-letter').textContent.trim();
+  if(!text) { alert('Please generate the cover letter first.'); return; }
+  generatePDFDocument(text, (selectedJob ? selectedJob.title : 'Application'));
+}
+
+function generatePDFDocument(fullText, jobTitle) {
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF({ unit: 'pt', format: 'a4' });
+  
+  // European Royal Header Bar
+  doc.setFillColor(0, 51, 153);
+  doc.rect(40, 40, 515, 6, 'F');
+  
+  doc.setFont('helvetica', 'bold');
+  doc.setFontSize(14);
+  doc.setTextColor(0, 51, 153);
+  doc.text("EUROPEAN APPLICATION & MOTIVATION LETTER", 40, 68);
+  
+  doc.setFont('helvetica', 'normal');
+  doc.setFontSize(9);
+  doc.setTextColor(100, 116, 139);
+  doc.text("Europass Mobility Standard Format · EuroJobs Pro Enterprise", 40, 82);
+  
+  doc.setDrawColor(226, 232, 240);
+  doc.setLineWidth(1);
+  doc.line(40, 92, 555, 92);
+  
+  // Letter Content
+  doc.setFont('helvetica', 'normal');
+  doc.setFontSize(10.5);
+  doc.setTextColor(15, 23, 42);
+  
+  const splitText = doc.splitTextToSize(fullText, 515);
+  doc.text(splitText, 40, 115);
+  
+  // Document Footer
+  doc.setFontSize(8.5);
+  doc.setTextColor(148, 163, 184);
+  doc.text("Generated via EuroJobs Pro European Mobility Platform", 40, 800);
+  
+  const cleanName = jobTitle.replace(/[^a-zA-Z0-9]/g, '_');
+  doc.save(`European_Cover_Letter_${cleanName}.pdf`);
+}
+
 async function runAIVisa() {
-  const box = document.getElementById('d-ai-box');
-  const source = document.getElementById('d-ai-source');
-  const text = document.getElementById('d-ai-text');
+  const box = document.getElementById('d-ai-box-visa');
+  const source = document.getElementById('d-ai-source-visa');
+  const text = document.getElementById('d-ai-text-visa');
   box.style.display = 'block';
   text.textContent = 'Evaluating legal eligibility...';
 
@@ -1198,9 +1710,9 @@ async function runAIVisa() {
 }
 
 async function runAICoverLetter() {
-  const box = document.getElementById('d-ai-box');
-  const source = document.getElementById('d-ai-source');
-  const text = document.getElementById('d-ai-text');
+  const box = document.getElementById('d-ai-box-letter');
+  const source = document.getElementById('d-ai-source-letter');
+  const text = document.getElementById('d-ai-text-letter');
   box.style.display = 'block';
   text.textContent = 'Synthesizing European application letter...';
 
@@ -1223,6 +1735,12 @@ async function runAICoverLetter() {
     source.textContent = d.source;
     text.textContent = d.cover_letter;
   } catch(e) { text.textContent = 'Error: ' + e.message; }
+}
+
+function copyDrawerLetter() {
+  const text = document.getElementById('d-ai-text-letter').textContent;
+  navigator.clipboard.writeText(text);
+  alert('✓ Cover letter copied to clipboard!');
 }
 
 function escapeHtml(str) {
@@ -1254,8 +1772,9 @@ if __name__ == "__main__":
     def auto_open_browser():
         time.sleep(1.2)
         print(f"\n==================================================")
-        print(f" EuroJobs Pro is Running at: {url}")
-        print(f" Automatically crawling all 42 European industries...")
+        print(f" EuroJobs Pro (Midnight Blue Wave + 3D Drawer) Running!")
+        print(f" Access URL: {url}")
+        print(f" 53 European Industries, Interactive Wave & PDF Active!")
         print(f"==================================================\n")
         webbrowser.open(url)
 
